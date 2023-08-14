@@ -1,7 +1,7 @@
 
 /*
  *
- *  * Copyright (c) Crio.Do 2019. All rights reserved
+ * * Copyright (c) Crio.Do 2019. All rights reserved
  *
  */
 
@@ -16,24 +16,34 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 // TODO: CRIO_TASK_MODULE_SERIALIZATION
-//  Implement Restaurant class.
+// Implement Restaurant class.
 // Complete the class such that it produces the following JSON during serialization.
 // {
-//  "restaurantId": "10",
-//  "name": "A2B",
-//  "city": "Hsr Layout",
-//  "imageUrl": "www.google.com",
-//  "latitude": 20.027,
-//  "longitude": 30.0,
-//  "opensAt": "18:00",
-//  "closesAt": "23:00",
-//  "attributes": [
-//    "Tamil",
-//    "South Indian"
-//  ]
+// "restaurantId": "10",
+// "name": "A2B",
+// "city": "Hsr Layout",
+// "imageUrl": "www.google.com",
+// "latitude": 20.027,
+// "longitude": 30.0,
+// "opensAt": "18:00",
+// "closesAt": "23:00",
+// "attributes": [
+// "Tamil",
+// "South Indian"
+// ]
 // }
 
+@NoArgsConstructor
+@Data
 public class Restaurant {
-
+  String restaurantId;
+  String name;
+  String city;
+  String imageUrl;
+  float latitude;
+  float longitude;
+  String opensAt;
+  String closesAt;
+  List<String> attributes;
 }
 
