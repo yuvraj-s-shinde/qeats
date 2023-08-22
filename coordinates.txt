@@ -1,2 +1,2 @@
-latitude=18.529623
-longitude=73.843748
+latitude=28
+longitude=77
