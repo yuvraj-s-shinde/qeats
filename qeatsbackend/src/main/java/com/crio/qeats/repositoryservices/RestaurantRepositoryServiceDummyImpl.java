@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadLocalRandom;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 public class RestaurantRepositoryServiceDummyImpl implements RestaurantRepositoryService {
@@ -43,8 +41,8 @@ public class RestaurantRepositoryServiceDummyImpl implements RestaurantRepositor
       e.printStackTrace();
     }
     for (Restaurant restaurant : restaurantList) {
-      restaurant.setLatitude((latitude + ThreadLocalRandom.current().nextDouble(0.000001, 0.2)));
-      restaurant.setLongitude((longitude + ThreadLocalRandom.current().nextDouble(0.000001, 0.2)));
+      restaurant.setLatitude(latitude + ThreadLocalRandom.current().nextDouble(0.000001, 0.2));
+      restaurant.setLongitude(longitude + ThreadLocalRandom.current().nextDouble(0.000001, 0.2));
     }
     return restaurantList;
   }
