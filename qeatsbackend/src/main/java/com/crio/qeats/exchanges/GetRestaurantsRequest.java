@@ -29,12 +29,12 @@ public class GetRestaurantsRequest {
 
 
     // @JsonProperty("searchFor")
-    String searchFor = "";
+  String searchFor = "";
         // private String searchFor;
 
-    public GetRestaurantsRequest(double latitude, double longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
+  public GetRestaurantsRequest(double latitude, double longitude) {
+    this.latitude = latitude;
+    this.longitude = longitude;
+  }
 }
 
