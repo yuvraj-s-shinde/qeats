@@ -10,6 +10,7 @@ package com.crio.qeats;
 import com.crio.qeats.globals.GlobalConstants;
 import com.crio.qeats.repositoryservices.RestaurantRepositoryService;
 import com.crio.qeats.repositoryservices.RestaurantRepositoryServiceDummyImpl;
+import com.crio.qeats.repositoryservices.RestaurantRepositoryServiceImpl;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
@@ -43,7 +44,7 @@ public class QEatsApplication {
   @Bean // Want a new obj every time
   // @Scope("prototype")
   public RestaurantRepositoryService restaurantRepositoryService() {
-    return new RestaurantRepositoryServiceDummyImpl();
+    return new RestaurantRepositoryServiceImpl();
   }
 
 }
