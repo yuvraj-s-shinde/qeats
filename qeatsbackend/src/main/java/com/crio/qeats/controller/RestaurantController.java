@@ -49,20 +49,22 @@ public class RestaurantController {
 
 
   @GetMapping(RESTAURANTS_API)
-  public ResponseEntity<GetRestaurantsResponse> restaurants(
+  public ResponseEntity<GetRestaurantsResponse> restaurants( @Valid
        GetRestaurantsRequest getRestaurantsRequest) {
 
     log.info("getRestaurants called with {}", getRestaurantsRequest);
     GetRestaurantsResponse getRestaurantsResponse;
 
-      getRestaurantsResponse = restaurantService
-          .findAllRestaurantsCloseBy(getRestaurantsRequest, LocalTime.now());
-      log.info("getRestaurants returned {}", getRestaurantsResponse);
-
+    getRestaurantsResponse = restaurantService
+        .findAllRestaurantsCloseBy(getRestaurantsRequest, LocalTime.now());
+    log.info("getRestaurants returned {}", getRestaurantsResponse);
+    
+    if (getRestaurantsResponse != null) {
       for (Restaurant restaurant : getRestaurantsResponse.getRestaurants()) {
         String nameWithoutUnicode = restaurant.getName().replaceAll("[Â©éí]", "e");
         restaurant.setName(nameWithoutUnicode);
-       }
+      }
+    }
 
     return ResponseEntity.ok().body(getRestaurantsResponse);
   }

@@ -38,23 +38,24 @@ public class RestaurantServiceImpl implements RestaurantService {
   // Check RestaurantService.java file for the interface contract.
   @Override
   public GetRestaurantsResponse findAllRestaurantsCloseBy(
-    GetRestaurantsRequest getRestaurantsRequest, LocalTime currentTime) {
-      double servingRadiusInKms = 0;
-      if ((currentTime.compareTo(LocalTime.parse("08:00")) >= 0 && 
-        currentTime.compareTo(LocalTime.parse("10:00")) <= 0) ||
-      (currentTime.compareTo(LocalTime.parse("13:00")) >= 0 && 
-        currentTime.compareTo(LocalTime.parse("14:00")) <= 0) ||
-      (currentTime.compareTo(LocalTime.parse("19:00")) >= 0 && 
-        currentTime.compareTo(LocalTime.parse("21:00")) <= 0)) {
-        servingRadiusInKms = peakHoursServingRadiusInKms;
-      }
-      else {
-        servingRadiusInKms = normalHoursServingRadiusInKms;
-      }
-      List<Restaurant> restaurants = restaurantRepositoryService.findAllRestaurantsCloseBy(getRestaurantsRequest.getLatitude(), getRestaurantsRequest.getLongitude(), currentTime, servingRadiusInKms);
-      GetRestaurantsResponse getRestaurantsResponse = new GetRestaurantsResponse(restaurants);
+      GetRestaurantsRequest getRestaurantsRequest, LocalTime currentTime) {
+    double servingRadiusInKms = 0;
+    if ((currentTime.compareTo(LocalTime.parse("08:00")) >= 0 
+        && currentTime.compareTo(LocalTime.parse("10:00")) <= 0) 
+        || (currentTime.compareTo(LocalTime.parse("13:00")) >= 0 
+        && currentTime.compareTo(LocalTime.parse("14:00")) <= 0) 
+        || (currentTime.compareTo(LocalTime.parse("19:00")) >= 0 
+        && currentTime.compareTo(LocalTime.parse("21:00")) <= 0)) {
+      servingRadiusInKms = peakHoursServingRadiusInKms;
+    } else {
+      servingRadiusInKms = normalHoursServingRadiusInKms;
+    }
+    List<Restaurant> restaurants = restaurantRepositoryService.findAllRestaurantsCloseBy(
+        getRestaurantsRequest.getLatitude(), getRestaurantsRequest.getLongitude(), 
+          currentTime, servingRadiusInKms);
+    GetRestaurantsResponse getRestaurantsResponse = new GetRestaurantsResponse(restaurants);
 
-      return getRestaurantsResponse;
+    return getRestaurantsResponse;
   }
 
 

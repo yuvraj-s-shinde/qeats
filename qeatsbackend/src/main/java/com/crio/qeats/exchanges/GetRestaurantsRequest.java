@@ -28,9 +28,9 @@ public class GetRestaurantsRequest {
   Double longitude;
 
 
-    // @JsonProperty("searchFor")
+  // @JsonProperty("searchFor")
   String searchFor = "";
-        // private String searchFor;
+  // private String searchFor;
 
   public GetRestaurantsRequest(double latitude, double longitude) {
     this.latitude = latitude;
