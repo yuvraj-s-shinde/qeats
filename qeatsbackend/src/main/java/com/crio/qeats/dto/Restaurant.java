@@ -8,6 +8,7 @@
 package com.crio.qeats.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.NotNull;
@@ -36,7 +37,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Restaurant {
+public class Restaurant implements Serializable {
 
   @NotNull @JsonIgnore
   private String id;
@@ -67,6 +68,16 @@ public class Restaurant {
 
   @NotNull
   private List<String> attributes = new ArrayList<>();
+
+  @Override
+  public String toString() {
+    return "Restaurant [attributes=" + attributes + ", city=" + city + ", closesAt=" + closesAt
+        + ", id=" + id + ", imageUrl=" + imageUrl + ", latitude=" + latitude + ", longitude="
+        + longitude + ", name=" + name + ", opensAt=" + opensAt + ", restaurantId=" + restaurantId
+        + "]";
+  }
+
+  
   
 }
 

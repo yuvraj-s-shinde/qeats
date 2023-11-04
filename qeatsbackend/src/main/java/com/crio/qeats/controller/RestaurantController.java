@@ -6,6 +6,7 @@
 
 package com.crio.qeats.controller;
 
+import com.crio.qeats.dto.Restaurant;
 import com.crio.qeats.exchanges.GetRestaurantsRequest;
 import com.crio.qeats.exchanges.GetRestaurantsResponse;
 import com.crio.qeats.services.RestaurantService;
@@ -46,18 +47,22 @@ public class RestaurantController {
   private RestaurantService restaurantService;
 
 
+
   @GetMapping(RESTAURANTS_API)
   public ResponseEntity<GetRestaurantsResponse> restaurants(
-    @Valid GetRestaurantsRequest getRestaurantsRequest) {
+       GetRestaurantsRequest getRestaurantsRequest) {
 
     log.info("getRestaurants called with {}", getRestaurantsRequest);
     GetRestaurantsResponse getRestaurantsResponse;
 
-      //CHECKSTYLE:OFF
-    getRestaurantsResponse = restaurantService
+      getRestaurantsResponse = restaurantService
           .findAllRestaurantsCloseBy(getRestaurantsRequest, LocalTime.now());
-    log.info("getRestaurants returned {}", getRestaurantsResponse);
-      //CHECKSTYLE:ON
+      log.info("getRestaurants returned {}", getRestaurantsResponse);
+
+      for (Restaurant restaurant : getRestaurantsResponse.getRestaurants()) {
+        String sanitizedName = restaurant.getName().replaceAll("[Â©éí]", "e");
+        restaurant.setName(sanitizedName);
+       }
 
     return ResponseEntity.ok().body(getRestaurantsResponse);
   }

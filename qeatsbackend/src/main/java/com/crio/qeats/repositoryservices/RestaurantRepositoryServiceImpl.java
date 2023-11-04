@@ -16,7 +16,14 @@ import com.crio.qeats.utils.GeoUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,14 +76,13 @@ public class RestaurantRepositoryServiceImpl implements RestaurantRepositoryServ
     List<RestaurantEntity> restaurantEntities = restaurantRepository.findAll();
 
     List<Restaurant> restaurants = new ArrayList<>();
-
     for(RestaurantEntity restaurantEntity : restaurantEntities) {
       if (this.isRestaurantCloseByAndOpen(restaurantEntity, currentTime, latitude, longitude, 
       servingRadiusInKms)){
-        restaurants.add(modelMapper.map(restaurantEntity, Restaurant.class));
+        Restaurant res = modelMapper.map(restaurantEntity, Restaurant.class);
+        restaurants.add(res);
       }
     }
-
     return restaurants;
 
     
