@@ -49,7 +49,7 @@ public class RestaurantController {
 
 
   @GetMapping(RESTAURANTS_API)
-  public ResponseEntity<GetRestaurantsResponse> restaurants( @Valid
+  public ResponseEntity<GetRestaurantsResponse> restaurants(@Valid
        GetRestaurantsRequest getRestaurantsRequest) {
 
     log.info("getRestaurants called with {}", getRestaurantsRequest);
