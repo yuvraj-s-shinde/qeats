@@ -60,8 +60,8 @@ public class RestaurantController {
       log.info("getRestaurants returned {}", getRestaurantsResponse);
 
       for (Restaurant restaurant : getRestaurantsResponse.getRestaurants()) {
-        String sanitizedName = restaurant.getName().replaceAll("[Â©éí]", "e");
-        restaurant.setName(sanitizedName);
+        String nameWithoutUnicode = restaurant.getName().replaceAll("[Â©éí]", "e");
+        restaurant.setName(nameWithoutUnicode);
        }
 
     return ResponseEntity.ok().body(getRestaurantsResponse);
